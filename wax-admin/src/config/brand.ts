@@ -2,13 +2,9 @@ export const adminBrand = {
   name: 'WAX Admin',
   label: 'Panel operativo',
   description:
-    'Base visual y estructural para catalogo, pedidos, clientes y contenido. La logica y los endpoints quedan pendientes para la siguiente fase.',
+    'Panel interno para gestion administrativa con acceso restringido a usuarios con rol de administrador.',
 } as const;
 
 export const adminNavigation = [
-  { label: 'Resumen', path: '/', meta: '01' },
-  { label: 'Catalogo', path: '/catalog', meta: '02' },
-  { label: 'Pedidos', path: '/orders', meta: '03' },
-  { label: 'Clientes', path: '/clients', meta: '04' },
-  { label: 'Contenido', path: '/content', meta: '05' },
+  { label: 'Pedidos', path: '/orders', meta: '01' },
 ] as const;
