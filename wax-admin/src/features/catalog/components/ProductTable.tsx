@@ -13,7 +13,7 @@ const formatPrice = (cents: number): string => {
 export const ProductTable = ({ products, onDelete }: ProductTableProps) => {
   const navigate = useNavigate();
 
-  if (products.length === 0) {
+  if (!products || products.length === 0) {
     return (
       <div className="admin-empty-state">
         <p>No se encontraron productos</p>

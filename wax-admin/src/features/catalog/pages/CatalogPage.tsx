@@ -66,7 +66,7 @@ export const CatalogPage = () => {
         <div className="admin-canvas" aria-label="Cargando productos" />
       ) : data ? (
         <>
-          <ProductTable products={data.items} onDelete={setProductToDelete} />
+          <ProductTable products={data.items ?? []} onDelete={setProductToDelete} />
 
           {data.totalPages > 1 && (
             <div className="admin-pagination">
