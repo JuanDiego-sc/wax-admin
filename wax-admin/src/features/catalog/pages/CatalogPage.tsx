@@ -1,30 +1,25 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { ProductTable } from '@/features/catalog/components/ProductTable';
 import { DeleteProductModal } from '@/features/catalog/components/DeleteProductModal';
 import { useProducts } from '@/features/catalog/hooks/useProducts';
 import { useDeleteProduct } from '@/features/catalog/hooks/useProductMutations';
+import { useDebounce } from '@/lib/hooks/useDebounce';
 import { routePaths } from '@/routes/routePaths';
 import type { Product } from '@/features/catalog/types/product';
 
 export const CatalogPage = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
-  const [debouncedSearch, setDebouncedSearch] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
   const [productToDelete, setProductToDelete] = useState<Product | null>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
 
-  useEffect(() => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => {
-      setDebouncedSearch(searchTerm);
-      setPageNumber(1);
-    }, 400);
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, [searchTerm]);
+  const debouncedSearch = useDebounce(searchTerm, 400);
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+    setPageNumber(1);
+  };
 
   const { data, isLoading } = useProducts({
     pageNumber,
@@ -37,7 +32,7 @@ export const CatalogPage = () => {
   const handleConfirmDelete = () => {
     if (!productToDelete) return;
     deleteMutation.mutate(productToDelete.id, {
-      onSuccess: () => setProductToDelete(null),
+      onSettled: () => setProductToDelete(null),
     });
   };
 
@@ -50,7 +45,7 @@ export const CatalogPage = () => {
             type="text"
             placeholder="Buscar productos..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
         <button

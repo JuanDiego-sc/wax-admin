@@ -9,8 +9,17 @@ import type {
 
 export const productApi = {
   getProducts: async (params: ProductParams): Promise<ProductListResponse> => {
-    const response = await agent.get<ProductListResponse>('/Product', { params });
-    return response.data;
+    const response = await agent.get<Product[]>('/Product', { params });
+    const raw = response.headers['pagination'];
+    const pagination = raw
+      ? (JSON.parse(raw) as { CurrentPage: number; TotalPages: number; TotalCount: number })
+      : { CurrentPage: 1, TotalPages: 1, TotalCount: 0 };
+    return {
+      items: response.data,
+      pageNumber: pagination.CurrentPage,
+      totalPages: pagination.TotalPages,
+      totalCount: pagination.TotalCount,
+    };
   },
 
   getProduct: async (id: string): Promise<Product> => {
