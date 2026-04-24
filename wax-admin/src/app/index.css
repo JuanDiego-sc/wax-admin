@@ -528,6 +528,12 @@ p {
   gap: 1rem;
 }
 
+.admin-auth-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 .admin-auth-field {
   display: grid;
   gap: 0.45rem;
@@ -559,6 +565,16 @@ p {
 
 .admin-button-block {
   width: 100%;
+}
+
+.admin-button-secondary {
+  border-color: rgba(15, 15, 16, 0.12);
+  background: transparent;
+  color: var(--wax-admin-ink);
+}
+
+.admin-button-secondary:hover:not(:disabled) {
+  background: rgba(15, 15, 16, 0.04);
 }
 
 @media (max-width: 1100px) {
