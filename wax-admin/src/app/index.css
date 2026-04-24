@@ -528,6 +528,12 @@ p {
   gap: 1rem;
 }
 
+.admin-auth-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 .admin-auth-field {
   display: grid;
   gap: 0.45rem;
@@ -561,247 +567,14 @@ p {
   width: 100%;
 }
 
-/* ── Catalog ── */
-
-.admin-catalog {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.admin-catalog-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.admin-catalog-search {
-  flex: 1;
-  max-width: 24rem;
-}
-
-.admin-product-thumb {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 0.5rem;
-  object-fit: cover;
-  background: rgba(15, 15, 16, 0.04);
-}
-
-.admin-table-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.admin-button-sm {
-  min-height: 2.2rem;
-  padding: 0.4rem 0.75rem;
-  font-size: 0.7rem;
-}
-
-.admin-button-ghost {
+.admin-button-secondary {
+  border-color: rgba(15, 15, 16, 0.12);
   background: transparent;
   color: var(--wax-admin-ink);
-  border: 1px solid var(--wax-admin-line);
 }
 
-.admin-button-ghost:hover {
+.admin-button-secondary:hover:not(:disabled) {
   background: rgba(15, 15, 16, 0.04);
-}
-
-.admin-button-danger {
-  background: var(--wax-admin-danger);
-  color: var(--wax-admin-surface-strong);
-  border-color: transparent;
-}
-
-.admin-button-danger:hover {
-  opacity: 0.9;
-}
-
-.admin-button-danger:disabled {
-  cursor: wait;
-  opacity: 0.5;
-}
-
-.admin-empty-state {
-  display: grid;
-  place-items: center;
-  padding: 4rem 2rem;
-  color: var(--wax-admin-muted);
-}
-
-.admin-pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.admin-pagination-info {
-  font-size: 0.85rem;
-  color: var(--wax-admin-muted);
-}
-
-/* ── Modal ── */
-
-.admin-modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  place-items: center;
-  background: rgba(15, 15, 16, 0.4);
-  backdrop-filter: blur(4px);
-}
-
-.admin-modal-card {
-  display: grid;
-  gap: 1rem;
-  width: min(28rem, 90vw);
-  padding: 2rem;
-  border: 1px solid var(--wax-admin-line);
-  border-radius: var(--wax-admin-radius-lg);
-  background: var(--wax-admin-surface-strong);
-  box-shadow: var(--wax-admin-shadow-elevated);
-}
-
-.admin-modal-title {
-  font-size: 1.4rem;
-}
-
-.admin-modal-text {
-  color: var(--wax-admin-muted);
-  line-height: 1.6;
-}
-
-.admin-modal-actions {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: flex-end;
-  margin-top: 0.5rem;
-}
-
-/* ── Product Form ── */
-
-.admin-product-page {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.admin-product-page-header {
-  display: grid;
-  gap: 0.3rem;
-}
-
-.admin-product-page-title {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  line-height: 0.92;
-}
-
-.admin-product-form {
-  display: grid;
-  gap: 2rem;
-}
-
-.admin-product-form-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
-  gap: 2rem;
-}
-
-.admin-product-form-fields {
-  display: grid;
-  gap: 1rem;
-}
-
-.admin-product-form-aside {
-  display: grid;
-  align-content: start;
-  gap: 0.5rem;
-}
-
-.admin-product-form-actions {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: flex-end;
-}
-
-.admin-form-field {
-  display: grid;
-  gap: 0.4rem;
-}
-
-.admin-form-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(15, 15, 16, 0.48);
-}
-
-.admin-form-input {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  border: 1px solid rgba(15, 15, 16, 0.12);
-  border-radius: 0.9rem;
-  background: rgba(255, 255, 255, 0.88);
-  color: var(--wax-admin-ink);
-}
-
-.admin-form-input:focus {
-  outline: none;
-  border-color: rgba(15, 15, 16, 0.32);
-  box-shadow: 0 0 0 3px rgba(15, 15, 16, 0.06);
-}
-
-.admin-form-textarea {
-  resize: vertical;
-  min-height: 6rem;
-}
-
-.admin-form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.admin-form-error {
-  font-size: 0.78rem;
-  color: var(--wax-admin-danger);
-}
-
-/* ── Dropzone ── */
-
-.admin-dropzone {
-  display: grid;
-  place-items: center;
-  min-height: 12rem;
-  padding: 1.5rem;
-  border: 2px dashed rgba(15, 15, 16, 0.12);
-  border-radius: var(--wax-admin-radius-md);
-  background: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: border-color 180ms ease, background 180ms ease;
-}
-
-.admin-dropzone:hover,
-.admin-dropzone.is-active {
-  border-color: rgba(15, 15, 16, 0.3);
-  background: rgba(255, 255, 255, 0.8);
-}
-
-.admin-dropzone-preview {
-  max-width: 100%;
-  max-height: 16rem;
-  border-radius: 0.5rem;
-  object-fit: contain;
-}
-
-.admin-dropzone-text {
-  text-align: center;
-  color: var(--wax-admin-muted);
-  font-size: 0.85rem;
 }
 
 @media (max-width: 1100px) {
