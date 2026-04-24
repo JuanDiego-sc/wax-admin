@@ -1,7 +1,7 @@
 import { useState, type SyntheticEvent } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import editorialLoginImage from '@/assets/images/editorial-login.png';
-import { useAdminLogin, useCurrentAdmin } from '@/lib/hooks/useAdminAccount';
+import { useAdminLogin, useAdminLogout, useCurrentAdmin } from '@/lib/hooks/useAdminAccount';
 import { routePaths } from '@/routes/routePaths';
 
 export const LoginPage = () => {
@@ -9,6 +9,7 @@ export const LoginPage = () => {
   const location = useLocation();
   const { data: currentUser, isLoading } = useCurrentAdmin();
   const loginMutation = useAdminLogin();
+  const logoutMutation = useAdminLogout();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -39,6 +40,33 @@ export const LoginPage = () => {
           <Link to={routePaths.overview} className="admin-button">
             Ir al panel
           </Link>
+        </div>
+      </section>
+    );
+  }
+
+  if (currentUser) {
+    return (
+      <section className="admin-auth-page">
+        <div className="admin-auth-card">
+          <span className="admin-section-label">Acceso denegado</span>
+          <h1 className="admin-auth-title">Esta cuenta no tiene permisos de administrador.</h1>
+          <p className="admin-auth-text">
+            Entraste como {currentUser.email}, pero esa sesion no tiene el rol necesario para acceder al panel.
+          </p>
+          <div className="admin-auth-actions">
+            <Link to={routePaths.forbidden} className="admin-button">
+              Ver pagina 403
+            </Link>
+            <button
+              className="admin-button admin-button-secondary"
+              type="button"
+              onClick={() => logoutMutation.mutate()}
+              disabled={logoutMutation.isPending}
+            >
+              {logoutMutation.isPending ? 'Cerrando sesion...' : 'Cerrar sesion'}
+            </button>
+          </div>
         </div>
       </section>
     );
