@@ -1,5 +1,8 @@
 import { createBrowserRouter, Navigate } from 'react-router';
 import { AdminLayout } from '@/layouts/AdminLayout';
+import { CatalogPage } from '@/features/catalog/pages/CatalogPage';
+import { CreateProductPage } from '@/features/catalog/pages/CreateProductPage';
+import { EditProductPage } from '@/features/catalog/pages/EditProductPage';
 import { DashboardPage } from '@/pages/DashboardPage';
 import { ForbiddenPage } from '@/pages/ForbiddenPage';
 import { LoginPage } from '@/pages/LoginPage';
@@ -31,8 +34,16 @@ export const router = createBrowserRouter([
             element: <Navigate to={routePaths.orders} replace />,
           },
           {
-        path: routePaths.catalog,
-            Component: DashboardPage,
+            path: routePaths.catalog,
+            Component: CatalogPage,
+          },
+          {
+            path: routePaths.catalogNew,
+            Component: CreateProductPage,
+          },
+          {
+            path: routePaths.catalogEdit,
+            Component: EditProductPage,
           },
           {
             path: routePaths.orders,

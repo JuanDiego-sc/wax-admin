@@ -11,7 +11,9 @@ export const RouteErrorPage = () => {
         <p>
           {isRouteErrorResponse(error)
             ? `${error.status} ${error.statusText}`
-            : 'Ocurrio un error inesperado mientras se cargaba la estructura del panel.'}
+            : error instanceof Error
+              ? error.message
+              : 'Ocurrio un error inesperado mientras se cargaba la estructura del panel.'}
         </p>
         <Link to="/" className="admin-button">
           Volver al resumen
