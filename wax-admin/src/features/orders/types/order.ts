@@ -50,12 +50,14 @@ export type OrderDto = {
 
 export type OrderListResponse = {
   items: OrderDto[];
-  nextCursor: string | null;
+  currentPage: number;
+  totalPages: number;
+  totalCount: number;
+  pageSize: number;
 };
 
 export type OrderParams = {
-  cursor?: string;
+  pageNumber?: number;
   pageSize?: number;
   filter?: string;
-  startDate?: string;
 };

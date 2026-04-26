@@ -12,12 +12,13 @@ export const useOrders = ({ pageSize = 10, filter }: UseOrdersOptions = {}) => {
     queryKey: queryKeys.orders.list({ pageSize, filter }),
     queryFn: ({ pageParam }) =>
       orderApi.getOrders({
-        cursor: pageParam ?? undefined,
+        pageNumber: pageParam,
         pageSize,
         filter: filter || 'Pending',
       }),
-    initialPageParam: null as string | null,
-    getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) =>
+      lastPage.currentPage < lastPage.totalPages ? lastPage.currentPage + 1 : undefined,
   });
 };
 
