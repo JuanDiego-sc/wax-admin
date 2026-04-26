@@ -19,6 +19,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      '/comments': {
+        target: 'http://localhost:5005',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
     },
   },
 })
