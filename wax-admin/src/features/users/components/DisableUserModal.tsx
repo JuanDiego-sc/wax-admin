@@ -18,8 +18,8 @@ export const DisableUserModal = ({
       <div className="admin-modal-card" onClick={(e) => e.stopPropagation()}>
         <h3 className="admin-modal-title">Deshabilitar usuario</h3>
         <p className="admin-modal-text">
-          Estas seguro de que quieres deshabilitar a <strong>{user.email}</strong>? El usuario no
-          podra iniciar sesion hasta que sea habilitado nuevamente.
+          ¿Estás seguro de que quieres deshabilitar a <strong>{user.email}</strong>? El usuario no
+          podrá iniciar sesión hasta que sea habilitado nuevamente.
         </p>
         <div className="admin-modal-actions">
           <button
