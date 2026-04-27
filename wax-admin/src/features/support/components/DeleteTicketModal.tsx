@@ -18,8 +18,8 @@ export const DeleteTicketModal = ({
       <div className="admin-modal-card" onClick={(e) => e.stopPropagation()}>
         <h3 className="admin-modal-title">Eliminar ticket</h3>
         <p className="admin-modal-text">
-          Estas seguro de que quieres eliminar el ticket <strong>{ticket.subject}</strong>? Esta
-          accion no se puede deshacer.
+          ¿Estás seguro de que quieres eliminar el ticket <strong>{ticket.subject}</strong>? Esta
+          acción no se puede deshacer.
         </p>
         <div className="admin-modal-actions">
           <button
