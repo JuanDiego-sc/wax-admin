@@ -23,7 +23,7 @@ export const SupportTicketPage = () => {
   // Read comments from React Query cache (populated by SignalR events)
   const { data: comments = [] } = useComments(id!);
 
-  // Mutation for sending comments with optimistic update
+  // Mutation for sending comments
   const sendMutation = useSendComment();
 
   useEffect(() => {
