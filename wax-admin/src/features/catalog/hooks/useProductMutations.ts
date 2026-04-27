@@ -31,11 +31,7 @@ export const useUpdateProduct = () => {
   return useMutation({
     mutationKey: mutationKeys.products.update,
     mutationFn: productApi.updateProduct,
-    onSuccess: async (_data, variables) => {
-      // Invalidating `products.all` marks stale all list + detail queries.
-      // The detail is explicitly invalidated too so the specific entry refetches
-      // immediately if it's still mounted (e.g. navigating back to edit).
-      await queryClient.invalidateQueries({ queryKey: queryKeys.products.detail(variables.id) });
+    onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: queryKeys.products.all });
       toast.success('Producto actualizado exitosamente');
       navigate(routePaths.catalog);

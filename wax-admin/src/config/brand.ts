@@ -6,6 +6,8 @@ export const adminBrand = {
 } as const;
 
 export const adminNavigation = [
-  { label: 'Catalogo', path: '/catalog', meta: '01' },
-  { label: 'Pedidos', path: '/orders', meta: '02' },
+  { label: 'Pedidos', path: '/orders', meta: '01' },
+  { label: 'Catalogo', path: '/catalog', meta: '02' },
+  { label: 'Usuarios', path: '/users', meta: '03' },
+  { label: 'Soporte', path: '/support', meta: '04' },
 ] as const;
