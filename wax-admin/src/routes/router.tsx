@@ -3,6 +3,11 @@ import { AdminLayout } from '@/layouts/AdminLayout';
 import { CatalogPage } from '@/features/catalog/pages/CatalogPage';
 import { CreateProductPage } from '@/features/catalog/pages/CreateProductPage';
 import { EditProductPage } from '@/features/catalog/pages/EditProductPage';
+import { UsersPage } from '@/features/users/pages/UsersPage';
+import { OrdersPage } from '@/features/orders/pages/OrdersPage';
+import { OrderDetailPage } from '@/features/orders/pages/OrderDetailPage';
+import { SupportPage } from '@/features/support/pages/SupportPage';
+import { SupportTicketPage } from '@/features/support/pages/SupportTicketPage';
 import { DashboardPage } from '@/pages/DashboardPage';
 import { ForbiddenPage } from '@/pages/ForbiddenPage';
 import { LoginPage } from '@/pages/LoginPage';
@@ -47,11 +52,23 @@ export const router = createBrowserRouter([
           },
           {
             path: routePaths.orders,
-            Component: DashboardPage,
+            Component: OrdersPage,
           },
           {
-            path: routePaths.clients,
-            Component: DashboardPage,
+            path: routePaths.orderDetail,
+            Component: OrderDetailPage,
+          },
+          {
+            path: routePaths.users,
+            Component: UsersPage,
+          },
+          {
+            path: routePaths.support,
+            Component: SupportPage,
+          },
+          {
+            path: routePaths.supportTicket,
+            Component: SupportTicketPage,
           },
           {
             path: routePaths.content,
