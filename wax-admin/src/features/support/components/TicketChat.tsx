@@ -3,6 +3,7 @@ import type { CommentDto } from '@/features/support/types/support';
 
 type TicketChatProps = {
   comments: CommentDto[];
+  currentUserName?: string;
   isConnected: boolean;
   isSending: boolean;
   onSend: (body: string) => void;
@@ -17,7 +18,7 @@ const formatTime = (iso: string): string => {
   });
 };
 
-export const TicketChat = ({ comments, isConnected, isSending, onSend }: TicketChatProps) => {
+export const TicketChat = ({ comments, currentUserName, isConnected, isSending, onSend }: TicketChatProps) => {
   const [message, setMessage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -46,15 +47,24 @@ export const TicketChat = ({ comments, isConnected, isSending, onSend }: TicketC
         {comments.length === 0 ? (
           <p className="admin-chat-empty">No hay comentarios aun</p>
         ) : (
-          comments.map((comment) => (
-            <div key={comment.id} className="admin-chat-message">
-              <div className="admin-chat-message-header">
-                <strong>{comment.userName}</strong>
-                <span className="admin-chat-time">{formatTime(comment.createdAt)}</span>
+          comments.map((comment) => {
+            const isOwn =
+              currentUserName !== undefined &&
+              comment.userName.toLowerCase() === currentUserName.toLowerCase();
+
+            return (
+              <div
+                key={comment.id}
+                className={`admin-chat-message ${isOwn ? 'admin-chat-message--own' : 'admin-chat-message--other'}`}
+              >
+                <div className="admin-chat-message-header">
+                  <strong>{comment.userName}</strong>
+                  <span className="admin-chat-time">{formatTime(comment.createdAt)}</span>
+                </div>
+                <p className="admin-chat-message-body">{comment.body}</p>
               </div>
-              <p className="admin-chat-message-body">{comment.body}</p>
-            </div>
-          ))
+            );
+          })
         )}
         <div ref={messagesEndRef} />
       </div>

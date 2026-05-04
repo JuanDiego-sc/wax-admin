@@ -947,6 +947,15 @@ p {
   gap: 0.25rem;
 }
 
+.admin-chat-message--own {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.admin-chat-message--other {
+  align-items: flex-start;
+}
+
 .admin-chat-message-header {
   display: flex;
   align-items: baseline;
@@ -962,6 +971,21 @@ p {
 .admin-chat-message-body {
   font-size: 0.9rem;
   line-height: 1.5;
+}
+
+.admin-chat-message--own .admin-chat-message-body {
+  background: var(--wax-admin-accent);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px 12px 2px 12px;
+  display: inline-block;
+}
+
+.admin-chat-message--other .admin-chat-message-body {
+  background: var(--wax-admin-surface);
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px 12px 12px 2px;
+  display: inline-block;
 }
 
 .admin-chat-message-pending {
