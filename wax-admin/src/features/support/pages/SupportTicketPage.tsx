@@ -8,6 +8,7 @@ import { useUpdateTicket } from '@/features/support/hooks/useTicketMutations';
 import { useSupportChat } from '@/features/support/hooks/useSupportChat';
 import { useComments } from '@/features/support/hooks/useComments';
 import { useSendComment } from '@/features/support/hooks/useSendComment';
+import { useCurrentAdmin } from '@/lib/hooks/useAdminAccount';
 import { routePaths } from '@/routes/routePaths';
 import type { TicketFormValues } from '@/features/support/components/TicketStatusForm';
 
@@ -16,6 +17,8 @@ export const SupportTicketPage = () => {
   const navigate = useNavigate();
   const { data: ticket, isLoading, isError } = useTicket(id!);
   const updateMutation = useUpdateTicket();
+
+  const { data: currentAdmin } = useCurrentAdmin();
 
   // SignalR connection — writes comments into React Query cache
   const { isConnected, sendComment } = useSupportChat(id!);
@@ -96,6 +99,7 @@ export const SupportTicketPage = () => {
         <div className="admin-ticket-chat-section">
           <TicketChat
             comments={comments}
+            currentUserName={currentAdmin?.userName}
             isConnected={isConnected}
             isSending={sendMutation.isPending}
             onSend={handleSendComment}
